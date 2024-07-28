@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EbooksCentralHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .container {
+            padding: 20px;
+        }
+        .ebook, .affiliate, .service {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+            padding: 10px;
+        }
+        .ebook img, .affiliate img {
+            width: 100px;
+            height: auto;
+        }
+        .ebook button, .affiliate button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .ebook button:hover, .affiliate button:hover {
+            background-color: #555;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form label {
+            margin-top: 10px;
+        }
+        form input, form textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDN7DsqVjffiE3hcGRH17HN3I91R3byz6M",
+            authDomain: "ebooks-central-hub.firebaseapp.com",
+            projectId: "ebooks-central-hub",
+            storageBucket: "ebooks-central-hub.appspot.com",
+            messagingSenderId: "268303100070",
+            appId: "1:268303100070:web:30b9069172fe8c528eac67",
+            measurementId: "G-95QR7K13M8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Form submitted!');
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert('Login successful!');
+                })
+                .catch((error) => {
+                    alert('Login failed: ' + error.message);
+                });
+        });
+
+        function addToCart(item) {
+            alert('Added ' + item + ' to cart');
+        }
+
+        function purchaseEbook(ebookId) {
+            alert('Purchased ' + ebookId);
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>EbooksCentralHub</h1>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#ebooks">eBooks</a></li>
+            <li><a href="#affiliate">Affiliate Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <section id="home">
+        <h2>Welcome to EbooksCentralHub</h2>
+        <p>This blog offers the best eBooks, promotes high-quality affiliate products, and provides top-notch freelance writing services.</p>
+    </section>
+
+    <section id="blog">
+        <h2>Blog</h2>
+        <article>
+            <h3>Blog Post Title</h3>
+            <p>Blog post content...</p>
+        </article>
+        <article>
+            <h3>Another Blog Post Title</h3>
+            <p>Another blog post content...</p>
+        </article>
+    </section>
+
+    <section id="ebooks">
+        <h2>eBooks</h2>
+        <div class="ebook">
+            <h3>eBook Title</h3>
+            <img src="ebook-cover.jpg" alt="eBook Title">
+            <p>Description of the eBook...</p>
+            <p><strong>$9.99</strong></p>
+            <button onclick="addToCart('ebook1')">Add to Cart</button>
+        </div>
+        <div class="ebook">
+            <h3>Another eBook Title</h3>
+            <img src="another-ebook-cover.jpg" alt="Another eBook Title">
+            <p>Description of another eBook...</p>
+            <p><strong>$14.99</strong></p>
+            <button onclick="addToCart('ebook2')">Add to Cart</button>
+        </div>
+    </section>
+
+    <section id="affiliate">
+        <h2>Affiliate Products</h2>
+        <div class="affiliate">
+            <h3>Product Title</h3>
+            <img src="affiliate-product.jpg" alt="Product Title">
+            <p>Description of the product...</p>
+            <button onclick="window.location.href='https://affiliate-link.com'">Buy Now</button>
+        </div>
+        <div class="affiliate">
+            <h3>Another Product Title</h3>
+            <img src="another-affiliate-product.jpg" alt="Another Product Title">
+            <p>Description of another product...</p>
+            <button onclick="window.location.href='https://another-affiliate-link.com'">Buy Now</button>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Freelance Writing Services</h2>
+        <p>I offer professional freelance writing services. Contact me for blog posts, articles, and more.</p>
+        <ul>
+            <li>Blog Posts: $50 per post</li>
+            <li>Articles: $75 per article</li>
+            <li>eBooks: $200 per eBook</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <section id="login">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="login-email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 EbooksCentralHub. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
